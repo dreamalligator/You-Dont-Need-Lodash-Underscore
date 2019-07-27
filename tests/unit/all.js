@@ -77,6 +77,24 @@ describe('code snippet example', () => {
       )
     })
   })
+
+  describe('flatten', () => {
+    it("_.flatten([1, 2, [3, 4]])", () => {
+      assert.deepEqual(
+        _.flatten([1, 2, [3, 4]]),
+        [1, 2, [3, 4]].flat(),
+      );
+    });
+
+    it("_.flatten([1, 2, [3, 4, [5, 6]]]", () => {
+      var array = [1, 2, [3, 4]]
+      assert.deepEqual(
+        _.flatten([1, 2, [3, 4, [5, 6]]]),
+        [1, 2, [3, 4, [5, 6]]].flat(),
+      );
+    });
+  });
+
   describe('chunk', () => {
     const chunk = (input, size) => {
       return input.reduce((arr, item, idx) => {
@@ -300,49 +318,49 @@ describe('code snippet example', () => {
       }
       return (num >= Math.min(init, final) && num < Math.max(init, final));
     }
-    
+
     it('_.inRange(3, 2, 4)', () => {
       assert.equal(
         _.inRange(3, 2, 4),
         inRange(3, 2, 4)
       )
     });
- 
+
     it('_.inRange(4, 8)', () => {
       assert.equal(
         _.inRange(4, 8),
         inRange(4, 8)
       )
     });
-    
+
     it('_.inRange(4, 2)', () => {
       assert.equal(
         _.inRange(4, 2),
         inRange(4, 2)
       )
     });
-    
+
     it('_.inRange(2, 2)', () => {
       assert.equal(
         _.inRange(2, 2),
         inRange(2, 2)
       )
     });
-    
+
     it('_.inRange(1.2, 2)', () => {
       assert.equal(
         _.inRange(1.2, 2),
         inRange(1.2, 2)
       )
     });
-    
+
     it('_.inRange(5.2, 4)', () => {
       assert.equal(
         _.inRange(5.2, 4),
         inRange(5.2, 4)
       )
     });
-    
+
     it('_.inRange(-3, -2, -6)', () => {
       assert.equal(
         _.inRange(-3, -2, -6),
@@ -359,13 +377,13 @@ describe('code snippet example', () => {
   })
 
   describe('random', () => {
-    
+
     const random = (lower, upper) => {
       if(!upper || typeof upper === 'boolean') {
         upper = lower;
         lower = 0;
       }
-      
+
       let randomic = Math.random() * upper;
       return randomic >= lower ? randomic : random(lower, upper);
     }
@@ -386,7 +404,7 @@ describe('code snippet example', () => {
       assert(random(1.2, 5.2) >= 1.2 && random(1,2, 5.2) <= 5.2);
     });
   });
-  
+
   describe('padStart', () => {
     it('_.padStart("123", 5, "0")', () => {
       assert.equal(
