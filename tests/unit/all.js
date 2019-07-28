@@ -87,10 +87,35 @@ describe('code snippet example', () => {
     });
 
     it("_.flatten([1, 2, [3, 4, [5, 6]]]", () => {
-      var array = [1, 2, [3, 4]]
       assert.deepEqual(
         _.flatten([1, 2, [3, 4, [5, 6]]]),
         [1, 2, [3, 4, [5, 6]]].flat(),
+      );
+    });
+  });
+
+  describe('flattenDeep', () => {
+    it("_.flattenDeep()", () => {
+      const array = [1, [2, [3, [4]], 5]];
+      assert.deepEqual(
+        _.flattenDeep(array),
+        array.flat(array.length + 1),
+      );
+    });
+  });
+
+  describe('flattenDepth', () => {
+    it("_.flattenDepth([1, [2, [3, [4]], 5]], 1)", () => {
+      assert.deepEqual(
+        _.flattenDepth([1, [2, [3, [4]], 5]], 1),
+        [1, [2, [3, [4]], 5]].flat(1),
+      );
+    });
+
+    it("_.flattenDepth([1, [2, [3, [4]], 5]], 2)", () => {
+      assert.deepEqual(
+        _.flattenDepth([1, [2, [3, [4]], 5]], 2),
+        [1, [2, [3, [4]], 5]].flat(2),
       );
     });
   });
