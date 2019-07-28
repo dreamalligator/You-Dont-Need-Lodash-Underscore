@@ -92,6 +92,84 @@ ruleTester.run('_.first', rules['first'], {
   }]
 });
 
+ruleTester.run('_.flatten', rules['flat'], {
+  valid: [
+    '[1, 2, [3, 4]].flat()',
+    '[1, 2, [3, 4, [5, 6]]].flat()',
+  ],
+  invalid: [
+    {
+      code: '_.flatten([1, 2, [3, 4]])',
+      errors: ['Consider using the native Array.prototype.flat()'],
+    },
+    {
+      code: '_.flatten([1, 2, [3, 4, [5, 6]]])',
+      errors: ['Consider using the native Array.prototype.flat()'],
+    }
+  ]
+});
+
+// ruleTester.run('_.flattenDeep', rules['flat'], {
+//   valid: [
+//     '[1, [2, [3, [4]], 5]].flat()'
+//   ],
+//   invalid: [
+//     {
+//       code: '_.flattenDeep([1, [2, [3, [4]], 5]])',
+//       errors: ['Consider using the native Array.prototype.flat()'],
+//     },
+//   ],
+// });
+
+// ruleTester.run('_.flattenDepth', rules['flat'], {
+//   valid: [
+//     '[1, [2, [3, [4]], 5]].flat(2)',
+//   ],
+//   invalid: [
+//     {
+//       code: '_.flattenDepth([1, [2, [3, [4]], 5]], 1)',
+//       errors: ['Consider using the native Array.prototype.flat()']
+//     },
+//     {
+//       code: '_.flattenDepth([1, [2, [3, [4]], 5]], 2)',
+//       errors: ['Consider using the native Array.prototype.flat()']
+//     }
+//   ]
+// });
+
+ruleTester.run('_.flatMap', rules['flat-map'], {
+  valid: [
+  ],
+  invalid: [
+    {
+      code: '_.flatMap([1, 2], n => [n, n])',
+      errors: ['Consider using the native Array.prototype.flatMap()']
+    }
+  ]
+});
+
+// ruleTester.run('_.flatMapDeep', rules['flat-map'], {
+//   valid: [
+//   ],
+//   invalid: [
+//     {
+//       code: '_.flatMapDeep([1, 2], n => [[[n, n]]])',
+//       errors: ['Consider using the native Array.prototype.flatMap()']
+//     }
+//   ]
+// });
+//
+// ruleTester.run('_.flatMapDepth', rules['flat-map'], {
+//   valid: [
+//   ],
+//   invalid: [
+//     {
+//       code: '_.flatMapDepth([1, 2], n => [[[n, n]]])',
+//       errors: ['Consider using the native Array.prototype.flatMap()']
+//     }
+//   ]
+// });
+
 ruleTester.run('_.last', rules['last'], {
   valid: [
     'var numbers = [0, 1, 3]; numbers[numbers.length - 1]',
