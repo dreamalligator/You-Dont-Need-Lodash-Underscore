@@ -120,6 +120,48 @@ describe('code snippet example', () => {
     });
   });
 
+  describe('flatMap', () => {
+    function duplicate(n) {
+      return [n, n];
+    }
+
+    it("_.flatMap([1, 2], duplicate)", () => {
+      const array = [1, 2];
+      assert.deepEqual(
+        _.flatMap(array, duplicate),
+        array.map(duplicate).flat()
+      );
+    });
+  });
+
+  describe('flatMapDeep', () => {
+    function duplicate(n) {
+      return [[[n, n]]];
+    }
+
+    it("_.flatMapDeep([])", () => {
+      const array = [1, 2];
+      assert.deepEqual(
+        _.flatMapDeep(array, duplicate),
+        array.map(duplicate).flat(array.length + 1)
+      );
+    });
+  });
+
+  describe('flatMapDepth', () => {
+    function duplicate(n) {
+      return [[[n, n]]];
+    }
+
+    it("_.flatMapDepth([1, 2], duplicate)", () => {
+      const array = [1, 2];
+      assert.deepEqual(
+        _.flatMapDepth(array, duplicate),
+        array.map(duplicate).flat(1)
+      );
+    });
+  });
+
   describe('chunk', () => {
     const chunk = (input, size) => {
       return input.reduce((arr, item, idx) => {
