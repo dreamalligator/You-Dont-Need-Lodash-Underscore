@@ -121,43 +121,37 @@ describe('code snippet example', () => {
   });
 
   describe('flatMap', () => {
-    function duplicate(n) {
-      return [n, n];
-    }
-
     it("_.flatMap([1, 2], duplicate)", () => {
       const array = [1, 2];
+      const duplicate = n => [n, n];
+
       assert.deepEqual(
         _.flatMap(array, duplicate),
-        array.map(duplicate).flat()
+        array.flatMap(duplicate)
       );
     });
   });
 
   describe('flatMapDeep', () => {
-    function duplicate(n) {
-      return [[[n, n]]];
-    }
-
-    it("_.flatMapDeep([])", () => {
+    it("_.flatMapDeep([1, 2], callback)", () => {
       const array = [1, 2];
+      const callback =  x => [[x * 2]];
+
       assert.deepEqual(
-        _.flatMapDeep(array, duplicate),
-        array.map(duplicate).flat(array.length + 1)
+        _.flatMapDeep(array, callback),
+        array.flatMap(callback).flat()
       );
     });
   });
 
   describe('flatMapDepth', () => {
-    function duplicate(n) {
-      return [[[n, n]]];
-    }
-
     it("_.flatMapDepth([1, 2], duplicate)", () => {
       const array = [1, 2];
+      function callback() { x => [[x * 2]] }
+
       assert.deepEqual(
-        _.flatMapDepth(array, duplicate),
-        array.map(duplicate).flat(1)
+        _.flatMapDepth(array, callback),
+        array.flatMap(callback)
       );
     });
   });
