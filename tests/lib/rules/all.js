@@ -148,27 +148,27 @@ ruleTester.run('_.flatMap', rules['flat-map'], {
   ]
 });
 
-// ruleTester.run('_.flatMapDeep', rules['flat-map'], {
-//   valid: [
-//   ],
-//   invalid: [
-//     {
-//       code: '_.flatMapDeep([1, 2], n => [[[n, n]]])',
-//       errors: ['Consider using the native Array.prototype.flatMap()']
-//     }
-//   ]
-// });
-//
-// ruleTester.run('_.flatMapDepth', rules['flat-map'], {
-//   valid: [
-//   ],
-//   invalid: [
-//     {
-//       code: '_.flatMapDepth([1, 2], n => [[[n, n]]])',
-//       errors: ['Consider using the native Array.prototype.flatMap()']
-//     }
-//   ]
-// });
+ruleTester.run('_.flatMapDeep', rules['flat-map'], {
+  valid: [
+  ],
+  invalid: [
+    {
+      code: '_.flatMapDeep([1, 2], n => [[[n, n]]])',
+      errors: ['Consider using the native Array.prototype.flatMap()']
+    }
+  ]
+});
+
+ruleTester.run('_.flatMapDepth', rules['flat-map'], {
+  valid: [
+  ],
+  invalid: [
+    {
+      code: '_.flatMapDepth([1, 2], n => [[[n, n]]])',
+      errors: ['Consider using the native Array.prototype.flatMap()']
+    }
+  ]
+});
 
 ruleTester.run('_.last', rules['last'], {
   valid: [
